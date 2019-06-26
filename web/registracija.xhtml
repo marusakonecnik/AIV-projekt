@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+
+</h:head>
+<h:body>
+    <h:form>
+        <h3> Using Managed Bean</h3>
+
+    </h:form>
+    <f:view>
+        <ui:composition template="template.xhtml">
+            <ui:define name="content">
+                <p:panel id="panel" header="Registracija">
+                    <h:form>
+                        <h:panelGrid columns="3">
+                            <p:outputLabel class="label-color" for="firstname" value="Ime: " />
+                            <p:inputText
+                                    id="firstname" requiredMessage="To polje je obvezno" name="name" required="true" value="#{personBean.newPerson.name}" validatorMessage="Dolžina mora biti vsaj dva">
+                                    <f:validateLength minimum="2" />
+                            </p:inputText>
+                            <p:message for="firstname" style="color:red"  />
+                            <p:outputLabel class="label-color" for="lastname" value="Priimek: " />
+                            <p:inputText  requiredMessage="To polje je obvezno" id="lastname" type="text" name="surname" required="true" value="#{personBean.newPerson.surname}">
+                                <f:validateLength minimum="2" />
+                            </p:inputText>
+                            <p:message for="lastname" style="color:red"  />
+                            <p:outputLabel class="label-color" for="basic" value="Teža: " />
+                            <p:spinner
+                                    converterMessage="Vnesena vrednost mora biti število"
+                                    validatorMessage="Vnesena vrednost mora biti večja od 0"
+                                    requiredMessage="To polje je obvezno"
+                                    type="number"
+                                    id="basic"
+                                    required="true"
+                                    value="#{personBean.newPerson.weight}">
+                                <f:convertNumber integerOnly="true" type="number" />
+                                <f:validateLongRange minimum="0" maximum="1000" />
+                            </p:spinner>
+                            <p:message for="basic" style="color:red"  />
+                            <p:outputLabel class="label-color" for="visina" value="Višina: "/>
+                            <p:spinner converterMessage="Vnesena vrednost mora biti število"
+                                       validatorMessage="Vnesena vrednost biti večja od 0"
+                                       requiredMessage="To polje je obvezno"
+                                       type="number"
+                                       id="visina"
+                                       required="true"
+                                       value="#{personBean.newPerson.height}">
+                                <f:convertNumber integerOnly="false" type="number" />
+                                <f:validateLongRange minimum="0" maximum="1000" />
+                            </p:spinner>
+                            <p:message for="visina" style="color:red"  />
+                            <p:outputLabel class="label-color" for="popup" value="Datum rojstva: " />
+                            <p:calendar id="popup" value="#{personBean.newPerson.date}" requiredMessage="Vnesite datum rojstva" required="true" />
+                            <p:message for="popup" style="color:red"  />
+                            <p:outputLabel class="label-color" value="Spol:"  />
+                            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                                <p:selectOneRadio requiredMessage="Izberite spol" id="Gender" unselectable="true" required="true" value="#{personBean.newPerson.gender}">
+                                    <f:selectItem itemLabel="Ženski" itemValue="Ženski" />
+                                    <f:selectItem itemLabel="Moški" itemValue="Moški" />
+                                </p:selectOneRadio>
+                            </h:panelGrid>
+                            <p:message for="Gender" style="color:red"/>
+                            <p:outputLabel for="Email" class="label-color" value="E-mail:" />
+                            <p:inputText requiredMessage="To polje je obvezno" validatorMessage="Email.Email ni v pravini obliki" id="Email" type="email" name="email" required="true" value="#{personBean.newPerson.email}">
+                                <f:validateRegex
+                                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                            </p:inputText>
+                            <p:message for="Email" style="color:red"  />
+                            <p:commandButton value="Potrdi" update="panel" action="#{personBean.addPerson()}"  icon="pi pi-check" />
+                        </h:panelGrid>
+                    </h:form>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </f:view>
+</h:body>
+
+</html>

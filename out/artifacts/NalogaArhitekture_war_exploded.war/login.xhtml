@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+
+</h:head>
+<h:body>
+    <f:view>
+
+        <ui:composition template="template.xhtml">
+            <ui:define name="content">
+                <p:panel id="panel2" header="Dodajanje aktivnosti">
+                    <form method="POST" action="j_security_check" id="">
+                        <h:panelGrid id="panel" columns="2" border="1" cellpadding="4" cellspacing="4">
+                            <h:outputLabel for="j_username" value="Username:" />
+                            <input type="text" name="j_username" />
+                            <h:outputLabel for="j_password" value="Password:" />
+                            <input type="password" name="j_password"/>
+                            <h:panelGroup>
+                                <input type="submit" value="Login"/>
+                            </h:panelGroup>
+                        </h:panelGrid>
+                    </form>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </f:view>
+</h:body>
+
+</html>

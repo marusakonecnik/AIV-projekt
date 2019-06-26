@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+    <title>Seznam oseb</title>
+</h:head>
+<h:body>
+
+          <f:view>
+              <ui:composition template="template.xhtml">
+              <ui:define name="content">
+
+                  <p:dataTable value="#{personBean.people}" var="p">
+                      <p:column headerText="Ime">
+                          <h:outputText  value="#{p.name}"/>
+                      </p:column>
+                      <p:column headerText="Priimek">
+                          <h:outputText  value="#{p.surname}"/>
+                      </p:column>
+                      <p:column headerText="Teža">
+                          <h:outputText  value="#{p.weight}"/>
+                      </p:column>
+                      <p:column headerText="Višina">
+                          <h:outputText  value="#{p.height}"/>
+                      </p:column>
+                      <p:column headerText="Datum rojstva">
+                          <h:outputText value="#{p.date}">
+                              <f:convertDateTime pattern="dd. MM. yyyy" />
+                          </h:outputText>
+                      </p:column>
+                      <p:column headerText="Spol">
+                          <h:outputText  value="#{p.gender}"/>
+                      </p:column>
+                      <p:column headerText="Email">
+                          <h:outputText  value="#{p.email}"/>
+                      </p:column>
+                      <p:column headerText="Aktivnosti">
+                          <h:form>  <p:commandButton action="#{personBean.returnPersonActivites(p)}" value="seznam" /></h:form>
+                      </p:column>
+                      <p:column headerText="Urejanje">
+                          <h:form>  <p:commandButton action="#{personBean.edit(p.email)}" value="uredi" /></h:form>
+
+                      </p:column>
+                  </p:dataTable>
+              </ui:define>
+          </ui:composition>
+        </f:view>
+
+</h:body>
+</html>

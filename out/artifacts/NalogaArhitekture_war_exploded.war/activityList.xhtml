@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+    <title>Seznam oseb</title>
+</h:head>
+<h:body>
+
+    <f:view>
+        <ui:composition template="template.xhtml">
+            <ui:define name="content">
+                <div class="ui-g-9">
+
+                    <p:dataTable value="#{personBean.activities}" var="a">
+                        <p:column headerText="Ime">
+                            <h:outputText  value="#{a.name}">
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Datum">
+                            <h:outputText  value="#{a.date}">
+                                <f:convertDateTime pattern="dd. MM. yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Čas začetka">
+                            <h:outputText  value="#{a.startingTime}">
+                                <f:convertDateTime pattern="HH:mm" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Čas konca">
+                            <h:outputText  value="#{a.finishTime}">
+                                <f:convertDateTime pattern="HH:mm" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Število korakov">
+                            <h:outputText  value="#{a.steps}"/>
+                        </p:column>
+                        <p:column headerText="Razdalja">
+                            <h:outputText  value="#{a.distance}"/>
+                        </p:column>
+                        <p:column headerText="Tip aktivnosti">
+                            <h:outputText  value="#{a.type} "/>
+                        </p:column>
+                        <p:column headerText="Lastnik">
+                            <h:outputText  value="#{a.person} "/>
+                        </p:column>
+                        <p:column headerText="Urejanje">
+                            <h:form><p:commandButton action="#{personBean.editActivity(a.id)}" value="uredi" /></h:form>
+                        </p:column>
+                        <p:column headerText="Kreiranje">
+                            <h:form><p:commandButton action="#{personBean.cloneActivity(a.id)}" value="Kreiraj kot" /></h:form>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </ui:define>
+             <div class="ui-g-3">l</div>
+        </ui:composition>
+    </f:view>
+
+</h:body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+
+</h:head>
+<h:body>
+      <f:view>
+
+        <ui:composition template="../template.xhtml">
+          <ui:define name="content">
+              <p:panel id="panel2" header="Dodajanje aktivnosti">
+                <h:form>
+                  <h:panelGrid columns="3" cellpadding="3">
+                        <p:outputLabel for="ime" value="Ime:" />
+                        <p:inputText id="ime" value="#{personBean.newActivity.name}"/>
+                        <p:message for="ime" style="color:red"  />
+                        <p:outputLabel value="Razdalja:"/>
+                        <p:inputText   converterMessage="Vrednost mora biti število"
+                                       validatorMessage="Vrednost mora biti večja od 0"
+                                       value="#{personBean.newActivity.distance}"
+                                       requiredMessage="To polje je obvezno"
+                                       id="dist"
+                                       required="true">
+                                <f:convertNumber integerOnly="true" type="number" />
+                                <f:validateLongRange minimum="0" maximum="1000" />
+                          </p:inputText>
+                          <p:message for="dist" style="color:red"  />
+                          <p:outputLabel for="time" value="Čas začetka:" />
+                          <p:calendar id="time" value="#{personBean.newActivity.startingTime}" pattern="HH:mm" timeOnly="true"  />
+                          <p:message for="time" style="color:red"  />
+                          <p:outputLabel for="timeFinish" value="Čas konca:" />
+                          <p:calendar id="timeFinish" value="#{personBean.newActivity.finishTime}" pattern="HH:mm" timeOnly="true"  />
+                          <p:message for="timeFinish" style="color:red"  />
+                          <p:outputLabel value="Število korakov:"/>
+                          <p:inputText converterMessage="Vrednost mora biti število"
+                                       validatorMessage="Vrednost mora biti večja od 0"
+                                       value="#{personBean.newActivity.steps}"
+                                       requiredMessage="To polje je obvezno"
+                                       id="stepsId">
+                                <f:convertNumber integerOnly="true" type="number" />
+                                <f:validateLongRange minimum="0" maximum="1000" />
+                          </p:inputText>
+                          <p:message for="stepsId" style="color:red"  />
+                          <p:outputLabel for="choice" value="Tip:" />
+                          <p:selectOneMenu id="choice" value="#{personBean.newActivity.type}" style="width:125px">
+                              <f:selectItem itemLabel="" itemValue="default" />
+                              <f:selectItem itemLabel="Družabna" itemValue="druzabna" />
+                              <f:selectItem itemLabel="Športna" itemValue="sport" />
+                              <f:selectItem itemLabel="Izobrazevanje" itemValue="izobrazevanje" />
+                        </p:selectOneMenu>
+                         <p:message for="choice" style="color:red"  />
+                        <p:outputLabel value="Oseba"/>
+                        <p:inputText id="person" value="#{personBean.email}"/>
+                        <p:outputLabel value="Mail za obveščanje:"></p:outputLabel>
+                        <p:inputText value="#{personBean.newActivity.personToNotify}"/>
+                        <p:commandButton action="#{personBean.addActivity()}" update="panel2" value="Potrdi" icon="pi pi-star" style="margin-right:20px;"/>
+                      <h:commandButton actionListener="#{demoBean.zbudiSeEJB()}" value="Test"/>
+                  </h:panelGrid>
+                </h:form>
+            </p:panel>
+          </ui:define>
+        </ui:composition>
+      </f:view>
+
+    <h:form>
+
+    </h:form>
+</h:body>
+
+</html>

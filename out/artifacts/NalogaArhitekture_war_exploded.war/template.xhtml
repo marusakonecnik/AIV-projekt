@@ -1,0 +1,37 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jstl/core"
+>
+
+<h:head>
+
+</h:head>
+<h:body>
+        <p:breadCrumb>
+            <p:menuitem value="" url="" />
+            <p:menuitem class="active" value="Registracija" url="registracija.xhtml" />
+            <p:menuitem value="Dodaj aktivnost" url="secure/index.xhtml"/>
+            <p:menuitem value="Seznam oseb" url="peopleList.xhtml" />
+            <p:menuitem value="Uporabnik: #{login.currentUser}" url="" />
+
+        </p:breadCrumb>
+        <c:if test = "#{!login.currentUser.equals('anonymous')}">
+            <h:form><p:commandButton action="#{login.logout}" value="Izpis"/> </h:form>
+        </c:if>
+
+            <div id="content-container">
+                <div id="content">
+                    <ui:insert name="content">
+                                <p>
+                                    Main content
+                                </p>
+                    </ui:insert>
+                </div>
+            </div>
+
+
+</h:body>
+</html>
